@@ -3,12 +3,12 @@ import { useApplicationStore } from '@/stores/application.js';
 
 const store = useApplicationStore();
 
-export function useRemoteDataGET(urlRef, authRef) {
+export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef = ref(null),) {
     const data = ref(null);
     const error = ref(null);
     const loading = ref(false);
 
-    const loadData = () => {
+    const performRequest = () => {
         const headers = {
             'Content-Type': 'application/json'
         };
@@ -16,11 +16,16 @@ export function useRemoteDataGET(urlRef, authRef) {
         if (authRef.value === true) {
             headers['Authorization'] = 'Bearer ' + store.userData.accessToken;
         }
+        const config = {
+            method: methodRef.value,
+            headers: headers,
+        };
 
-        fetch(urlRef.value, {
-            method: 'GET',
-            headers: headers
-        })
+        if (bodyRef.value !== null) {
+            config.body = JSON.stringify(bodyRef.value);
+        }
+
+        fetch(urlRef.value, config)
             .then((response) => {
                 if (response.ok) {
                     response.json().then((responseData) => {
@@ -36,5 +41,5 @@ export function useRemoteDataGET(urlRef, authRef) {
             });
     };
 
-    return { data, error, loading, loadData };
+    return { data, error, loading, performRequest };
 }

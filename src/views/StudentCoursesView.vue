@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { useRemoteDataGET } from '@/composables/useRemoteDataGET.js';
+import { useRemoteData } from '@/composables/useRemoteData.js';
 
 const router = useRouter();
 const route = useRoute();
@@ -11,11 +11,11 @@ const urlRef = computed(() => {
     return 'http://localhost:9090/student/' + studentIdRef.value + '/courses';
 });
 const authRef = ref(true);
-const { data, loading, loadData } = useRemoteDataGET(urlRef, authRef);
+const { data, loading, performRequest } = useRemoteData(urlRef, authRef);
 
 onMounted(() => {
     studentIdRef.value = route.params.id;
-    loadData();
+    performRequest();
 });
 </script>
 

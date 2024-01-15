@@ -1,13 +1,13 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useRemoteDataGET } from '@/composables/useRemoteDataGET.js';
+import { useRemoteData } from '@/composables/useRemoteData.js';
 
 const urlRef = ref('http://localhost:9090/student');
 const authRef = ref(true);
-const { data, loading, loadData } = useRemoteDataGET(urlRef, authRef);
+const { data, loading, performRequest } = useRemoteData(urlRef, authRef);
 
 onMounted(() => {
-    loadData();
+    performRequest();
 });
 </script>
 
