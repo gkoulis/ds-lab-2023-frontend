@@ -1,7 +1,14 @@
 <script setup>
+import { onMounted, ref } from 'vue';
 import { useRemoteDataGET } from '@/composables/useRemoteDataGET.js';
 
-const { data, error, loading } = useRemoteDataGET('http://localhost:9090/api/student/test', true);
+const urlRef = ref('http://localhost:9090/student');
+const authRef = ref(true);
+const { data, loading, loadData } = useRemoteDataGET(urlRef, authRef);
+
+onMounted(() => {
+    loadData();
+});
 </script>
 
 <template>
@@ -13,8 +20,39 @@ const { data, error, loading } = useRemoteDataGET('http://localhost:9090/api/stu
                         <h1 class="fs-3">Students</h1>
                     </div>
                     <div>
-                        <!-- @EXERCISE: Create a nice component to present user data -->
-                        <pre>{{ data }}</pre>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody v-if="loading">
+                                <tr>
+                                    <td colspan="5">Loading...</td>
+                                </tr>
+                            </tbody>
+                            <tbody v-if="data">
+                                <tr v-for="student in data._embedded.students">
+                                    <td>{{ student.id }}</td>
+                                    <td>{{ student.firstName }}</td>
+                                    <td>{{ student.lastName }}</td>
+                                    <td>{{ student.email }}</td>
+                                    <td>
+                                        <RouterLink
+                                            :to="{
+                                                name: 'student-details',
+                                                params: { id: student.id }
+                                            }"
+                                            >Display</RouterLink
+                                        >
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
