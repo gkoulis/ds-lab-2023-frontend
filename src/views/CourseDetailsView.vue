@@ -2,13 +2,14 @@
 import { ref, computed, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useRemoteData } from '@/composables/useRemoteData.js';
+const backendEnvVar = import.meta.env.BACKEND;
 
 const router = useRouter();
 const route = useRoute();
 
 const courseIdRef = ref(null);
 const urlRef = computed(() => {
-  return 'http://localhost:9090/course/' + courseIdRef.value;
+  return '{{backendEnvVar}}'+'/course/' + courseIdRef.value;
 });
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);

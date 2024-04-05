@@ -8,7 +8,7 @@ const route = useRoute();
 
 const studentIdRef = ref(null);
 const urlRef = computed(() => {
-    return 'http://localhost:9090/student/' + studentIdRef.value;
+    return +'/student/' + studentIdRef.value;
 });
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);

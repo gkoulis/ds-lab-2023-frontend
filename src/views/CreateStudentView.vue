@@ -1,13 +1,14 @@
 <script setup>
 import { ref } from "vue";
 import { useRemoteData } from "@/composables/useRemoteData.js";
+const backendEnvVar = import.meta.env.VITE_BACKEND;
 
 const formDataRef = ref({
   "firstName": "",
   "lastName": "",
   "email": ""
 });
-const urlRef = ref("http://localhost:9090/student");
+const urlRef = ref(backendEnvVar +"/student");
 const authRef = ref(true);
 const methodRef = ref("POST");
 
