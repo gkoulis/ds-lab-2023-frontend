@@ -16,6 +16,9 @@ export default defineConfig(({ mode }) => {
               target: `${env.VITE_BACKEND}`,
               // changeOrigin: true,
               // secure: false, 
+            },
+            '/student' : {
+              target: `${env.VITE_BACKEND}`,
             }
           }
   },
