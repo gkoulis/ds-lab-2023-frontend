@@ -18,8 +18,11 @@ export default defineConfig(({ mode }) => {
               // secure: false, 
             },
             '/student' : {
-              target: `${env.VITE_BACKEND}`,
-            }
+              target: `${env.VITE_BACKEND}`
+            },
+            '/courses': {
+              target: `${env.VITE_BACKEND}`,            
+            },
           }
   },
   plugins: [
