@@ -14,8 +14,8 @@ export default defineConfig(({ mode }) => {
       proxy: {
           '/api/auth/signin': {
               target: `${env.VITE_BACKEND}`,
-              changeOrigin: true,
-              secure: false, 
+              // changeOrigin: true,
+              // secure: false, 
             }
           }
   },
