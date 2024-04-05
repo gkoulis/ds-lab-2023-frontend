@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
             '/student' : {
               target: `${env.VITE_BACKEND}`
             },
-            '/courses': {
+            '/course': {
               target: `${env.VITE_BACKEND}`,            
             },
           }
