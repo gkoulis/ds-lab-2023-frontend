@@ -35,6 +35,7 @@ const onFormSubmit = () => {
                     router.push({ name: 'home' });
                 });
             } else {
+                console.log(response);
                 authenticationFailed.value = true;
             }
         })
