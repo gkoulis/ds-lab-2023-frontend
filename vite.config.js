@@ -10,15 +10,15 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
 
   return {
-    server: {
-      proxy: {
-          '/api/auth/signin': {
-              target: `${env.VITE_BACKEND}`,
-              changeOrigin: true,
-              secure: false, 
-            }
-          }
-  },
+  //   server: {
+  //     proxy: {
+  //         '/api/auth/signin': {
+  //             target: `${env.VITE_BACKEND}`,
+  //             changeOrigin: true,
+  //             secure: false, 
+  //           }
+  //         }
+  // },
   plugins: [
     vue(),
     Components({

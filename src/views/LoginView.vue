@@ -19,8 +19,7 @@ const authenticationFailed = ref(false);
 const onFormSubmit = () => {
     loading.value = true;
     authenticationFailed.value = false;
-    console.log(backendEnvVar);
-    fetch('/api/auth/signin', {
+    fetch(`${backendEnvVar}/api/auth/signin`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -29,6 +28,7 @@ const onFormSubmit = () => {
     })
         .then((response) => {
             if (response.ok) {
+                console.log(response);
                 response.json().then((data) => {
                     setUserData(data);
                     persistUserData();
