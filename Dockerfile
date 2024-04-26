@@ -11,8 +11,6 @@ COPY . .
 RUN sed -i 's/localhost:9090/spring:9090/g' src/views/LoginView.vue
 RUN sed -i 's/localhost:9090/spring:9090/g' src/views/StudentCoursesView.vue
 RUN sed -i 's/localhost:9090/spring:9090/g' src/views/StudentsView.vue
-
-# RUN sed 's/localhost:9090/spring:9090/g' src/views/SignupView.vue
 # Build the Vue.js application to the production mode to dist folder
 RUN npm run build
 # Use the lightweight Nginx image from the previous stage for the nginx container
