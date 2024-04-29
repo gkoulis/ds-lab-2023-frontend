@@ -8,9 +8,7 @@ COPY package*.json ./
 RUN npm install
 # Copy the rest of the project files to the container
 COPY . .
-RUN sed -i 's/localhost:9090/localhost:9000/g' src/views/LoginView.vue
-RUN sed -i 's/localhost:9090/localhost:9000/g' src/views/StudentCoursesView.vue
-RUN sed -i 's/localhost:9090/localhost:9000/g' src/views/StudentsView.vue
+
 # Build the Vue.js application to the production mode to dist folder
 RUN npm run build
 # Use the lightweight Nginx image from the previous stage for the nginx container
