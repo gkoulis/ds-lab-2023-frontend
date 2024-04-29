@@ -9,7 +9,7 @@ const route = useRoute();
 
 const studentIdRef = ref(null);
 const urlRef = computed(() => {
-    return backendEnvVar +'/student/' + studentIdRef.value + '/courses';
+    return '/api/student/' + studentIdRef.value + '/courses';
 });
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);

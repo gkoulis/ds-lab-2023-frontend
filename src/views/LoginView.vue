@@ -19,8 +19,13 @@ const authenticationFailed = ref(false);
 const onFormSubmit = () => {
     loading.value = true;
     authenticationFailed.value = false;
+<<<<<<< HEAD
     console.log(backendEnvVar);
     fetch(`${backendEnvVar}/api/auth/signin`, {
+=======
+
+    fetch('/api/api/auth/signin', {
+>>>>>>> test
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
