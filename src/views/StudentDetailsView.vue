@@ -8,7 +8,7 @@ const route = useRoute();
 
 const studentIdRef = ref(null);
 const urlRef = computed(() => {
-    return 'http://localhost:9090/student/' + studentIdRef.value;
+    return '/api/student/' + studentIdRef.value;
 });
 const authRef = ref(true);
 const { data, loading, loadData } = useRemoteDataGET(urlRef, authRef);

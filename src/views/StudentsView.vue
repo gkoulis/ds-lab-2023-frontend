@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { useRemoteDataGET } from '@/composables/useRemoteDataGET.js';
 
-const urlRef = ref('http://localhost:9090/student');
+const urlRef = ref('/api/student');
 const authRef = ref(true);
 const { data, loading, loadData } = useRemoteDataGET(urlRef, authRef);
 

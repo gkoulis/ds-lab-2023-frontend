@@ -19,7 +19,7 @@ const onFormSubmit = () => {
     loading.value = true;
     authenticationFailed.value = false;
 
-    fetch('http://localhost:9090/api/auth/signin', {
+    fetch('/api/api/auth/signin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
