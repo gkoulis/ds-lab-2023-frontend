@@ -7,38 +7,40 @@ const route = useRoute();
 
 const courseIdRef = ref(null);
 const urlRef = computed(() => {
-  return backendEnvVar +'/course/' + courseIdRef.value + '/students';
+    return backendEnvVar + '/api/course/' + courseIdRef.value + '/students';
 });
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);
 
 onMounted(() => {
-  courseIdRef.value = route.params.id;
-  performRequest();
+    courseIdRef.value = route.params.id;
+    performRequest();
 });
 </script>
 
 <template>
-  <div>
-    <table class="table">
-      <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Action</th>
-      </tr>
-      </thead>
-      <tbody v-if="data">
-      <tr v-for="student in data._embedded.students" :key="student.id">
-        <td>{{ student.firstName }}</td>
-        <td>{{ student.lastName }}</td>
-        <td>{{ student.email }}</td>
-        <td>
-          <RouterLink :to="{ name: 'student-details', params: { id: student.id } }">Display</RouterLink>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody v-if="data">
+                <tr v-for="student in data" :key="student.id">
+                    <td>{{ student.firstName }}</td>
+                    <td>{{ student.lastName }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>
+                        <RouterLink :to="{ name: 'student-details', params: { id: student.id } }"
+                            >Display</RouterLink
+                        >
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>

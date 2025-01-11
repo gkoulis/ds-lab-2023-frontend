@@ -23,11 +23,13 @@ const applicationStore = useApplicationStore();
                             >Home</router-link
                         >
                     </li>
+                    <!-- TODO enable.
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
                         <router-link :to="{ name: 'students' }" class="nav-link text-white"
                             >Students</router-link
                         >
                     </li>
+                    -->
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
                         <router-link :to="{ name: 'courses' }" class="nav-link text-white"
                             >Courses</router-link

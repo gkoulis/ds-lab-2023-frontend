@@ -3,7 +3,7 @@ import { useApplicationStore } from '@/stores/application.js';
 
 const store = useApplicationStore();
 
-export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef = ref(null),) {
+export function useRemoteData(urlRef, authRef, methodRef = ref('GET'), bodyRef = ref(null)) {
     const data = ref(null);
     const error = ref(null);
     const loading = ref(false);
@@ -18,23 +18,25 @@ export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef =
         }
         const config = {
             method: methodRef.value,
-            headers: headers,
+            headers: headers
         };
 
         if (bodyRef.value !== null) {
             config.body = JSON.stringify(bodyRef.value);
         }
 
-        fetch(urlRef.value, config)
+        return fetch(urlRef.value, config)
             .then((response) => {
                 if (response.ok) {
                     response.json().then((responseData) => {
                         data.value = responseData;
                     });
                 }
+                return Promise.resolve(data.value);
             })
             .catch((err) => {
                 error.value = err;
+                return Promise.reject(error.value);
             })
             .finally(() => {
                 loading.value = false;
