@@ -9,12 +9,18 @@ const { loadUserData } = useApplicationStore();
 
 onBeforeMount(() => {
     // If this method is non-blocking, add a loader.
-    loadUserData();
+    // loadUserData();
 });
 </script>
 
 <template>
+    <!--
     <AppHeader />
+    -->
+    <!--
     <RouterView />
+    -->
+    <!--
     <AppFooter />
+    -->
 </template>
