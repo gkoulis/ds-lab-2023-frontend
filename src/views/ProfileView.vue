@@ -13,7 +13,16 @@ const { userData } = useApplicationStore();
                     </div>
                     <div>
                         <!-- @EXERCISE: Create a nice component to present user data -->
-                        <pre>{{ userData }}</pre>
+                        
+                <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ userData.username }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Details</h6>
+                    <p class="card-text"> id: {{ userData.id }}</p>
+                    <p class="card-text"> roles: {{ userData.roles }}</p>
+                </div>
+                </div>
+                <pre>{{ userData }}</pre>
                     </div>
                 </div>
             </div>
